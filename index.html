@@ -6,105 +6,223 @@
     <!-- Webpage Title (will show on tab) -->
     <title>Professional Portfolio</title>
     <style>
-        /* Basic styling for the page */
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --bg: #05070b;
+            --panel: rgba(8, 16, 28, 0.92);
+            --text: #e8efff;
+            --muted: #8ea5c2;
+            --accent: #7db6ff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
             margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            min-height: 100%;
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            color: var(--text);
+            background: radial-gradient(circle at 20% 15%, rgba(125, 182, 255, 0.12), transparent 24%),
+                        radial-gradient(circle at 85% 18%, rgba(168, 255, 176, 0.08), transparent 22%),
+                        linear-gradient(180deg, #07111f 0%, #020207 100%);
         }
-        header {
-            background: #333;
-            color: #fff;
-            padding: 1rem 0;
-            text-align: center;
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02), transparent 30%);
+            pointer-events: none;
         }
+
+        .pillar {
+            position: fixed;
+            top: 28px;
+            width: 128px;
+            height: calc(100vh - 56px);
+            background: linear-gradient(180deg, rgba(24, 31, 44, 0.98), rgba(11, 17, 27, 0.98));
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 32px;
+            box-shadow: 0 28px 90px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .pillar::before {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMjAgODAwJz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2cnIHgxPScwJyB4Mj0nMCcgeTE9JzAnIHkyPScxJz48c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPSclMjM5ZGU1OGQnLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9JyUyMzc4YmQ2ZCcvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxwYXRoIGQ9J001MCAwIEM0MiA5MCAyNSAxMzAgNDUgMjIwIFM4MCAzODAgNTUgNDcwIFMxNSA2MjAgNTAgNzIwIFM4NSA3ODAgNTUgODQwJyBzdHJva2U9J3VybCglMjNnKScgc3Ryb2tlLXdpZHRoPScxMCcgZmlsbD0nbm9uZScgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJy8+PGNpcmNsZSBjeD0nNDQnIGN5PScxNjInIHI9JzknIGZpbGw9JyUyM2E5ZTJhMycvPjxjaXJjbGUgY3g9JzYwJyBjeT0nMzU0JyByPSc4JyBmaWxsPSclMjNjNGYyYzknLz48Y2lyY2xlIGN4PSczOCcgY3k9JzUzNCcgcj0nMTAnIGZpbGw9JyUyMzlhZTQ4ZicvPjxjaXJjbGUgY3g9JzU0JyBjeT0nNjg0JyByPSc4JyBmaWxsPSclMjNiMmVkYWInLz48L3N2Zz4=");
+            background-size: 104px 100%;
+            background-repeat: no-repeat;
+            background-position: center top;
+            opacity: 0.76;
+            filter: drop-shadow(0 0 18px rgba(75, 180, 110, 0.16));
+        }
+
+        .pillar-left { left: 18px; }
+        .pillar-right { right: 18px; transform: scaleX(-1); }
+
+        .main {
+            position: relative;
+            z-index: 1;
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 72px 34px 48px;
+        }
+
+        .header-panel {
+            background: rgba(8, 16, 28, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 32px;
+            padding: 44px 44px 36px;
+            box-shadow: 0 34px 92px rgba(0, 0, 0, 0.28);
+            backdrop-filter: blur(12px);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            letter-spacing: -0.04em;
+            color: #f5f9ff;
+        }
+
+        header p {
+            max-width: 56rem;
+            margin: 18px 0 0;
+            font-size: 1.05rem;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
         nav {
-            margin: 1rem 0;
+            margin-top: 2.4rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            justify-content: center;
         }
+
         nav a {
-            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.85rem 1.35rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
             text-decoration: none;
-            margin: 0 1rem;
+            font-weight: 600;
+            transition: transform 0.2s ease, background 0.2s ease;
         }
+
+        nav a:hover {
+            background: rgba(125, 182, 255, 0.16);
+            transform: translateY(-1px);
+        }
+
         section {
-            padding: 2rem;
-            border-bottom: 1px solid #ddd;
+            margin-top: 2.5rem;
+            padding: 2.4rem 2.2rem;
+            background: rgba(10, 18, 30, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 28px;
+            box-shadow: 0 22px 62px rgba(0, 0, 0, 0.25);
         }
+
+        section h2 {
+            margin: 0 0 1rem;
+            font-size: clamp(1.6rem, 2vw, 2rem);
+            color: #d8e6ff;
+        }
+
+        section p,
+        section li {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        ul {
+            padding-left: 1.35rem;
+            margin: 0.8rem 0 0;
+        }
+
+        li {
+            margin-bottom: 0.9rem;
+        }
+
+        a {
+            color: var(--accent);
+        }
+
         footer {
+            margin-top: 2.8rem;
             text-align: center;
-            padding: 1rem;
-            background: #333;
-            color: #fff;
+            padding: 26px 18px;
+            color: rgba(255, 255, 255, 0.58);
+            font-size: 0.96rem;
+        }
+
+        @media (max-width: 860px) {
+            .pillar { display: none; }
+            .main { padding: 46px 22px 32px; }
+            section { padding: 2rem 1.4rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <h1>Welcome to My Portfolio</h1>
-        <nav>
-            <a href="#about">About Me</a>
-            <a href="#projects">Projects</a>
-            <a href="#credentials">Credentials</a>
-            <a href="#contact">Contact Info</a>
-        </nav>
-    </header>
+    <div class="pillar pillar-left"></div>
+    <div class="pillar pillar-right"></div>
 
-    <!-- About Me Section -->
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-            <!-- Add a brief introduction about yourself here -->
-            Hello! My name is Aiden Meza. I am passionate about music, creativity, and learning. 
-            Welcome to my portfolio website!
-        </p>
-    </section>
+    <main class="main">
+        <header class="header-panel">
+            <h1>Welcome to My Portfolio</h1>
+            <p>Hello! My name is Aiden Meza. I am passionate about music, creativity, and learning. Welcome to my portfolio website!</p>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#credentials">Credentials</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2>Projects</h2>
-        <p>
-            <!-- Add a list or description of your projects here -->
-            Here are some of the projects I have worked on:
-        </p>
-        <ul>
-            <li>Project 1: [Brief description] <a href="[link to project repository]" target="_blank">[Project repository]</a></li>
-            <li>Project 2: [Brief description] <a href="[link to project repository]" target="_blank">[Project repository]</a></li>
-        </ul>
-    </section>
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Hello! My name is Aiden Meza. I am passionate about music, creativity, and learning. Welcome to my portfolio website!</p>
+        </section>
 
-    <!-- Credentials Section -->
-    <section id="credentials">
-        <h2>Credentials</h2>
-        <p>
-            <!-- Add your credentials, certifications, or achievements here -->
-            I have earned the following certifications and achievements:
-        </p>
-        <ul>
-            <li>Certification 1: [Details]</li>
-            <li>Certification 2: [Details]</li>
-            <li>Certification 3: [Details]</li>
-            <!-- Add images of your certification digital badges -->
-        </ul>
-    </section>
+        <section id="projects">
+            <h2>Projects</h2>
+            <p>Here are some of the projects I have worked on:</p>
+            <ul>
+                <li>Project 1: [Brief description] <a href="[link to project repository]" target="_blank">[Project repository]</a></li>
+                <li>Project 2: [Brief description] <a href="[link to project repository]" target="_blank">[Project repository]</a></li>
+            </ul>
+        </section>
 
-    <!-- Contact Info Section -->
-    <section id="contact">
-        <h2>Contact Info</h2>
-        <p>
-            <!-- Add your contact information here -->
-            Feel free to reach out to me:
-        </p>
-        <ul>
-            <li>Email: hhqbsm@gmail.com</li>
-            <li>LinkedIn: <a href="[your-linkedin-profile]" target="_blank">[Your LinkedIn]</a></li>
-        </ul>
-    </section>
+        <section id="credentials">
+            <h2>Credentials</h2>
+            <p>I have earned the following certifications and achievements:</p>
+            <ul>
+                <li>Certification 1: [Details]</li>
+                <li>Certification 2: [Details]</li>
+                <li>Certification 3: [Details]</li>
+            </ul>
+        </section>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2025 [Your Name]. All rights reserved.</p>
-    </footer>
+        <section id="contact">
+            <h2>Contact Info</h2>
+            <p>Feel free to reach out to me:</p>
+            <ul>
+                <li>Email: hhqbsm@gmail.com</li>
+                <li>LinkedIn: <a href="[your-linkedin-profile]" target="_blank">[Your LinkedIn]</a></li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Aiden Meza. All rights reserved.</p>
+        </footer>
+    </main>
 </body>
 </html>
